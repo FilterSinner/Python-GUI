@@ -1,3 +1,4 @@
 # Python-GUI
 
-An IT asset manager application created using Python GUI which stores and retrieves data that is being inputed.
+"An IT asset management system with a Python Tkinter GUI for user-friendly data entry, retrieval, and image capture. Utilizes openpyxl for Excel-based data storage."
+
