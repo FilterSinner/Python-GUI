@@ -2,7 +2,7 @@
 #Items,Serial No,Remarks
 
 import tkinter
-from tkinter import Button, ttk
+from tkinter import X, Button, Label, ttk
 from tkcalendar import Calendar,DateEntry
 import openpyxl
 import os
@@ -36,9 +36,6 @@ def enter_data():
         print("Remarks: ",remarks)
     
 
-
-
-
         filepath = r'C:\Users\Ojal\Documents\IT asset mngr\main\data.xlsx'
         if not os.path.exists(filepath):
             workbook = openpyxl.Workbook()
@@ -63,13 +60,20 @@ window= tkinter.Tk()
 #parent window for everything else, big window
 window.title("Data Entry for IT Assets")
 
-
+title=Label(window,text=' IT Assets Management System',bg=None,fg=None,font=('Inter',20,'bold'))
+title.pack(fill=X)
 frame=tkinter.Frame(window,padx=5,pady=20) #creating a frame inside the window
 frame.pack() #layout managers(pack,grid)
 
+logo = Image.open(r'C:\Users\Ojal\Documents\IT asset mngr\main\c1.png')
+logosize=logo.resize((100,30))
+display=ImageTk.PhotoImage(logosize)
+logo_label=ttk.Label(window,image=display)
+logo_label.place(x=25,y=5)
+
 #Label frames, sort of like groups that come under a frame(think in figma terms)
 user_info_frame=tkinter.LabelFrame(frame,text="User Information")
-user_info_frame.grid(row=0,column=0,padx=20,pady=20)
+user_info_frame.grid(row=0,column=0,padx=5,pady=5)
 
 name_label=tkinter.Label(user_info_frame,text="Employee Name")
 name_label.grid(row=0,column=0)
@@ -88,9 +92,9 @@ title_label.grid(row=0,column=2)
 title_label_combobox.grid(row=1,column=2)
 
 Dept_label=tkinter.Label(user_info_frame,text="Department")
-Dept_label.grid(row=2,column=0)
+Dept_label.grid(row=0,column=3)
 Dept_label_e=tkinter.Entry(user_info_frame)
-Dept_label_e.grid(row=3,column=0)
+Dept_label_e.grid(row=1,column=3)
 
 '''Date_label=tkinter.Label(user_info_frame,text="Verified Date (dd/mm/yyyy)")
     Date_label.grid(row=2,column=1)
@@ -103,16 +107,16 @@ def get_date():
 
 date_var=tkinter.StringVar()
 cal = DateEntry(user_info_frame, date_pattern="dd-mm-yyyy",variable=date_var)
-cal.grid(row=3,column=1)
+cal.grid(row=3,column=0)
 '''btn = Button(user_info_frame, text="Sumbit", command=get_date)
 btn.grid(row=4,column=1)'''
 Date_label=tkinter.Label(user_info_frame,text="Verified Date")
-Date_label.grid(row=2,column=1)
+Date_label.grid(row=2,column=0)
 
 Email_label=tkinter.Label(user_info_frame,text="Email Address")
-Email_label.grid(row=2,column=2)
+Email_label.grid(row=2,column=1)
 Email_label_e=tkinter.Entry(user_info_frame)
-Email_label_e.grid(row=3,column=2)
+Email_label_e.grid(row=3,column=1)
 
 
 for widget in user_info_frame.winfo_children():
@@ -143,8 +147,6 @@ Remarks_label.grid(row=0,column=2)
 Remarks_label_e=tkinter.Entry(item_info_frame)
 Remarks_label_e.grid(row=1,column=2)
 
-for widget in item_info_frame.winfo_children():
-    widget.grid_configure(padx=20,pady=5)
 
 selected_image_path = tkinter.StringVar()
 
@@ -175,15 +177,20 @@ def load_image(file_path):
 upload_image_button = tkinter.Button(item_info_frame, text="Upload Signature", command=open_image_dialog)
 upload_image_button.grid(row=1, column=4)
 
+
+for widget in item_info_frame.winfo_children():
+    widget.grid_configure(padx=23,pady=5,sticky="news")
+
+
+   
 terms_frame = tkinter.LabelFrame(frame, text="Terms & Conditions")
-terms_frame.grid(row=2, column=0, padx=20, pady=10)
+terms_frame.grid(row=2, column=0, padx=25, pady=10,sticky="news")
 
 name=name_label_e.get()
 accepted_var = tkinter.StringVar(value="Not Accepted")
 terms_check = tkinter.Checkbutton(terms_frame, text= f"I,{name} hereby acknowledge that above mentioned assets are under my custody.I understand that this asset belongs to\n The Coca-Cola Bottling Company of Bahrain(B.S.C) and is under my possession for carrying out my office work.\n I hereby assure that  I will take care of the assets of the compay to the best possible extend." ,
                                   variable=accepted_var, onvalue="Accepted", offvalue="Not Accepted")
-terms_check.grid(row=0, column=0)
-
+terms_check.grid(row=0, column=0,padx=5,pady=5)
 
 button=tkinter.Button(frame,text="Enter data",command=enter_data)
 button.grid(row=3,column=0,sticky="news",padx=20,pady=5)
