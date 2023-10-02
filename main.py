@@ -1,3 +1,4 @@
+
 import tkinter
 from tkinter import X, Button, Canvas, Label, Scrollbar, ttk, Entry, Checkbutton, messagebox
 from tkcalendar import Calendar, DateEntry
@@ -95,7 +96,7 @@ def get_print():
     verifier = verifier_label_e.get()
 
     selected_date = cal.get()
-    logo_path = r"C:\Users\Ojal\Documents\IT asset mngr\main\c1.jpg"
+    logo_path = r"C:\...c1.png"
 
     pdf = FPDF()
     pdf.add_page()
@@ -138,7 +139,7 @@ def generate_pdf(asset_data):
     pdf = FPDF()
     pdf.add_page()
 
-    logo_path = r"C:\Users\Ojal\Documents\IT asset mngr\main\c1.jpg"
+    logo_path = r"C:\...c1.jpg"
 
     pdf = FPDF()
     pdf.add_page()
@@ -167,7 +168,7 @@ def generate_pdf(asset_data):
     pdf.cell(50, 10, str(asset_data['Remarks']), border=1)
     pdf.ln()
 
-    pdf_file_path = f"C:\\Users\\Ojal\\Documents\\IT asset mngr\\main\\new{asset_data['Emp No']}_asset.pdf"
+    pdf_file_path = f"C:path\to\folder\{asset_data['Emp No']}_asset.pdf"
     pdf.output(pdf_file_path)
 
     return pdf_file_path
@@ -175,10 +176,10 @@ def generate_pdf(asset_data):
 def send_email():
     smtp_server = "smtp.gmail.com"
     smtp_port = 587
-    smtp_username = "ojalcoke@gmail.com"
-    smtp_password = "hyxa ytnw okbs wklr"
+    smtp_username = "email@gmail.com"
+    smtp_password = "password"
 
-    excel_file = r'C:\Users\Ojal\Documents\actual_asset_data.xlsx'
+    excel_file = r'C:\path\to\folder'
     df = pd.read_excel(excel_file)
 
     # Create a dictionary to group assets by email
@@ -208,7 +209,7 @@ def send_email():
 
         # Create an email message
         msg = MIMEMultipart()
-        msg['From'] = "ojalcoke@gmail.com"  # Replace with your Gmail email
+        msg['From'] = "email@gmail.com"  # Replace with your Gmail email
         msg['To'] = email
         msg['Subject'] = "Your Assets PDF"
 
@@ -245,7 +246,7 @@ def generate_consolidated_pdf(assets):
     pdf = FPDF()
     pdf.add_page()
 
-    logo_path = r"C:\Users\Ojal\Documents\IT asset mngr\main\c1.jpg"
+    logo_path = "...c1.jpg"
     pdf.image(logo_path, x=10, y=10, w=30)
     pdf.set_font("Arial", "B", 16)
     pdf.cell(0, 10, "The Coca-Cola Bottling Company of Bahrain", 0, 1, "C")
@@ -293,8 +294,8 @@ def generate_consolidated_pdf(assets):
 def send_email_to_selected_person(selected_person, pdf_file_path):
     smtp_server = "smtp.gmail.com"  # Replace with your SMTP server
     smtp_port = 587  # Replace with your SMTP port
-    smtp_username = "ojalcoke@gmail.com"  # Replace with your email
-    smtp_password = "hyxa ytnw okbs wklr"  # Replace with your password
+    smtp_username = "email@gmail.com"  # Replace with your email
+    smtp_password = "password"  # Replace with your password
 
     # Create an email message
     msg = MIMEMultipart()
@@ -329,7 +330,7 @@ def generate_consolidated_pdf_s(selected_person, assets):
     pdf = FPDF()
     pdf.add_page()
 
-    logo_path = r"C:\Users\Ojal\Documents\IT asset mngr\main\c1.jpg"
+    logo_path = "..c1.png"
     pdf.image(logo_path, x=10, y=10, w=30)
     pdf.set_font("Arial", "B", 16)
     pdf.cell(0, 10, "The Coca-Cola Bottling Company of Bahrain", 0, 1, "C")
@@ -380,7 +381,7 @@ def send_selected_pdf():
         messagebox.showinfo("Error", "Please enter an Employee Number.")
         return
 
-    excel_file = r'C:\Users\Ojal\Documents\actual_asset_data.xlsx'
+    excel_file = r'C:\...actual_asset_data.xlsx'
     df = pd.read_excel(excel_file)
 
     selected_person = None
@@ -437,7 +438,7 @@ frame.pack()  # layout managers(pack,grid)
 
 
 
-logo = Image.open(r'C:\Users\Ojal\Documents\IT asset mngr\main\c1.jpg')
+logo = Image.open(r'C:\...c1.png')
 logosize = logo.resize((100, 30))
 display = ImageTk.PhotoImage(logosize)
 logo_label = ttk.Label(window, image=display)
@@ -528,12 +529,6 @@ terms_frame.grid(row=2, column=0, padx=25, pady=10, sticky="news")
 
 name = name_label_e.get()
 accepted_var = tkinter.StringVar(value="Not Accepted")
-# terms_check = tkinter.Checkbutton(terms_frame, text=f"I,{name} hereby acknowledge that above mentioned assets are "
-#                                                   f"under my custody. I understand that this asset belongs to\n "
-#                                                   f"The Coca-Cola Bottling Company of Bahrain(B.S.C) and is under my "
-#                                                   f"possession for carrying out my office work.\n I hereby assure that  "
-#                                                   f"I will take care of the assets of the compay to the best possible extend.",
-#                                   variable=accepted_var, onvalue="Accepted", offvalue="Not Accepted")
 # terms_check.grid(row=0, column=0, padx=5, pady=5)
 
 button_print = tkinter.Button(window, text="Print", command=get_print)
