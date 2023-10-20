@@ -44,7 +44,7 @@ This project is an IT Asset Management System developed in Python with a graphic
 
 ## Acknowledgment
 
-The project includes an HTML template for email content. Feel free to customize it further.
+The project includes an HTML template for email content. 
 
 ## Additional Notes
 
